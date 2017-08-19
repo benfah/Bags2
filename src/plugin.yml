@@ -1,0 +1,6 @@
+name: Bags2
+version: 1.0.0
+main: me.benfah.bags2.main.Bags2
+depend: [CustomUtils]
+author: benfah
+
