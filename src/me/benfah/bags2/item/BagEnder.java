@@ -1,5 +1,6 @@
 package me.benfah.bags2.item;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -35,8 +36,13 @@ public class BagEnder extends BagBase{
 	public ShapedRecipe getStandardRecipe()
 	{
 		
-		ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
-		
+		ShapedRecipe sr;
+		if(Bukkit.getBukkitVersion().contains("1.11"))
+		{
+			sr = new ShapedRecipe(getItem());
+		}
+		else
+		sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());		
 		sr.shape("GDG", "LSL", "LEL");
 		sr.setIngredient('G', Material.GOLD_INGOT);
 		sr.setIngredient('D', Material.DIAMOND);

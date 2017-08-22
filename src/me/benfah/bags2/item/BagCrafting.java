@@ -36,8 +36,13 @@ public class BagCrafting extends BagBase{
 	@Override
 	public ShapedRecipe getStandardRecipe() {
 		
-		ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
-		sr.shape("ILI", "LSL", "LCL");
+		ShapedRecipe sr;
+		if(Bukkit.getBukkitVersion().contains("1.11"))
+		{
+			sr = new ShapedRecipe(getItem());
+		}
+		else
+		sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());		sr.shape("ILI", "LSL", "LCL");
 		sr.setIngredient('I', Material.IRON_INGOT);
 		sr.setIngredient('L', Material.LEATHER);
 		sr.setIngredient('S', Material.STRING);

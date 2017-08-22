@@ -84,7 +84,6 @@ public class Bags2 extends JavaPlugin
 		Bukkit.getPluginManager().registerEvents(new CraftListener(), this);
 		RecipeManager.initRecipes();
 
-		
 		CustomRegistry.registerItem(smallBag, this);
 		CustomRegistry.registerItem(bigBag, this);
 		CustomRegistry.registerItem(craftingBag, this);

@@ -1,5 +1,6 @@
 package me.benfah.bags2.item;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -23,8 +24,13 @@ public class BagSmall extends BagStorage{
 	@Override
 	public ShapedRecipe getStandardRecipe()
 	{
-		ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
-		sr.shape("ILI", "LSL", "LLL");
+		ShapedRecipe sr;
+		if(Bukkit.getBukkitVersion().contains("1.11"))
+		{
+			sr = new ShapedRecipe(getItem());
+		}
+		else
+		sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());		sr.shape("ILI", "LSL", "LLL");
 		sr.setIngredient('L', Material.LEATHER);
 		sr.setIngredient('I', Material.IRON_INGOT);
 		sr.setIngredient('S', Material.STRING);

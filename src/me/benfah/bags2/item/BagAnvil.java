@@ -1,5 +1,6 @@
 package me.benfah.bags2.item;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -14,7 +15,7 @@ import me.benfah.bags2.util.Util;
 
 public class BagAnvil extends BagBase{
 	
-	Permission anvil_open = new Permission("bag.open." + name, PermissionDefault.OP);
+	Permission anvil_open = new Permission("bag.open." + name, PermissionDefault.TRUE);
 	
 	public BagAnvil()
 	{
@@ -30,11 +31,17 @@ public class BagAnvil extends BagBase{
 		}
 		super.onInteract(e, es);
 	}
-
+	
 	@Override
 	public ShapedRecipe getStandardRecipe()
 	{
-		ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
+		ShapedRecipe sr;
+		if(Bukkit.getBukkitVersion().contains("1.11"))
+		{
+			sr = new ShapedRecipe(getItem());
+		}
+		else
+		sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
 		sr.shape("ILI", "LSL", "LAL");
 		sr.setIngredient('I', Material.IRON_BLOCK);
 		sr.setIngredient('L', Material.LEATHER);

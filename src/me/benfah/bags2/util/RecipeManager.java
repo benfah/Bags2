@@ -3,6 +3,7 @@ package me.benfah.bags2.util;
 import java.io.IOException;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +19,6 @@ public class RecipeManager
 {
 	public static Recipe getRecipe(String name)
 	{
-		System.out.println("EIGHBÜGBÜGBPEIUVDEPBDU");
 		CustomItem ci = CustomRegistry.getCustomItemByName(name);
 		if(ci instanceof BagBase)
 		{
@@ -26,7 +26,14 @@ public class RecipeManager
 			
 			String prefix = "recipes." + name;
 			
-			ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), bb.getItem());
+			
+			ShapedRecipe sr;
+			if(Bukkit.getBukkitVersion().contains("1.11"))
+			{
+				sr = new ShapedRecipe(bb.getItem());
+			}
+			else
+			sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), bb.getItem());
 			sr.shape("ABC", "DEF", "GHI");
 			sr.setIngredient('A', Material.getMaterial(Bags2.recipes.getString(prefix + ".1")));
 			sr.setIngredient('B', Material.getMaterial(Bags2.recipes.getString(prefix + ".2")));

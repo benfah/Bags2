@@ -1,5 +1,6 @@
 package me.benfah.bags2.item;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -53,8 +54,13 @@ public class BagEnchant extends BagBase
 	public ShapedRecipe getStandardRecipe()
 	{
 		
-		ShapedRecipe sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());
-		
+		ShapedRecipe sr;
+		if(Bukkit.getBukkitVersion().contains("1.11"))
+		{
+			sr = new ShapedRecipe(getItem());
+		}
+		else
+		sr = new ShapedRecipe(new NamespacedKey(Bags2.instance, name), getItem());		
 		sr.shape("GLG", "LSL", "LEL");
 		sr.setIngredient('G', Material.GOLD_INGOT);
 		sr.setIngredient('L', Material.LEATHER);

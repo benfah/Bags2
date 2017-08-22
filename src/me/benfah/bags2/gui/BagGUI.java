@@ -40,7 +40,6 @@ public class BagGUI extends CustomGUI
 	{
 		int i = Util.isBag(e.getPlayer().getInventory().getItemInMainHand()) ? e.getPlayer().getInventory().getHeldItemSlot() : 40;
 		ItemStack stack = e.getPlayer().getInventory().getItem(i);
-		System.out.println(stack);
 		CompoundTag ct = BagStorage.getCompoundOfItemStack(stack);
 		ct = BagStorage.saveInventory(ct, Arrays.asList(e.getInventory().getContents()), false, size);
 		e.getPlayer().getInventory().setItem(i, BagStorage.setCompoundToItemStack(stack, ct));
@@ -49,13 +48,16 @@ public class BagGUI extends CustomGUI
 	@Override
 	public void onClick(InventoryClickEvent e)
 	{
-		System.out.println("CHINCHINERRY");
-		if(CustomRegistry.isCustomItem(e.getCurrentItem()))
+		if(e.getCurrentItem() != null)
 		{
-			System.out.println("haigegeghoebgperb9rub");
-			if(CustomRegistry.getCustomItem(e.getCurrentItem()).getName().startsWith("bag_"))
-			e.setCancelled(true);
-			
+			if(CustomRegistry.isCustomItem(e.getCurrentItem()))
+			{
+				if(CustomRegistry.getCustomItem(e.getCurrentItem()).getName().startsWith("bag_"))
+				e.setCancelled(true);
+				
+			}
+			if(e.getCurrentItem().getType().toString().endsWith("SHULKER_BOX"))
+			e.setCancelled(true);	
 		}
 		super.onClick(e);
 	}

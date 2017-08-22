@@ -74,7 +74,6 @@ public abstract class BagBase extends CustomItem
         
             nbttagcompound.set("Items", nbttaglist);
         
-            System.out.println(nbttaglist.getValue());
 
         return nbttagcompound;
     }
@@ -99,14 +98,12 @@ public abstract class BagBase extends CustomItem
 	        ListTag<CompoundTag> nbttaglist = nbttagcompound.has("Items") ? nbttagcompound.getList("Items") : new ListTag<CompoundTag>();
 	        ItemStack[] result = new ItemStack[size];
 	        for (int i = 0; i < size; ++i) {
-	        	System.out.println(nbttaglist.size());
 	        	if(nbttaglist.size() > i)
 	        	{	
 	            CompoundTag nbttagcompound1 = nbttaglist.get(i);
 	            int j = nbttagcompound1.get("Slot").getAsByte() & 255;
 	            Object nmsStack = ReflectionUtils.getRefClass("{nms}.ItemStack").getConstructor(nbttagcompound1.toNMS().getClass()).newInstance(nbttagcompound1.toNMS());
 	            ItemStack stack = (ItemStack) ReflectionUtils.getRefClass("{cb}.inventory.CraftItemStack").getMethod("asCraftMirror", nmsStack.getClass()).invoke(null, nmsStack);
-	            System.out.println(stack.getType());
 	            result[j] = stack;
 	        	}
 	        }

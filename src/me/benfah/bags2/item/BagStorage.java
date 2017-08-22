@@ -27,7 +27,6 @@ public abstract class BagStorage extends BagBase
 		
 		ItemStack stack = es.equals(EquipmentSlot.HAND) ? p.getInventory().getItemInMainHand() : p.getInventory().getItemInOffHand();
 		ItemStack[] istack = loadInventory(getCompoundOfItemStack(stack), size);
-		System.out.println(istack.length);
 		CInventory inv = Bags2.bagGUI.createInventory(stack.getItemMeta().getDisplayName(), istack, size);
 //		inv.slot = p.getInventory().getHeldItemSlot();
 //		p.openInventory(inv.getInternalInventory());
