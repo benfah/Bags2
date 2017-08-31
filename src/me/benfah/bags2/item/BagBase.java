@@ -169,10 +169,11 @@ public abstract class BagBase extends CustomItem
 		ItemStack stack = es.equals(EquipmentSlot.HAND) ? e.getPlayer().getInventory().getItemInMainHand() : e.getPlayer().getInventory().getItemInOffHand();
 		if(stack.hasItemMeta() ? !stack.getItemMeta().getDisplayName().equals(Translation.get(name)) : false)
 		{
-			if(!stack.getItemMeta().getDisplayName().startsWith(ChatColor.ITALIC.toString()))
+			if(stack.getItemMeta().getDisplayName().startsWith(ChatColor.RESET.toString()))
 			{
 				
 				ItemMeta im = stack.getItemMeta();
+				if(!im.getDisplayName().startsWith(ChatColor.ITALIC.toString()))
 				im.setDisplayName(ChatColor.RESET + Translation.get(name));
 				stack.setItemMeta(im);
 				if(es.equals(EquipmentSlot.HAND))
